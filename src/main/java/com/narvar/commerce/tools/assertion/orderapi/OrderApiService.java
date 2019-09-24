@@ -80,6 +80,8 @@ public class OrderApiService {
         }
         orderAssertionResponse.setInvalidOrders(invalidOrders);
         orderAssertionResponse.setValidatedOrders(validatedOrders);
+        orderAssertionResponse.setInvalidOrdersCount(invalidOrders.size());
+        orderAssertionResponse.setValidatedOrdersCount(validatedOrders.size());
         return orderAssertionResponse;
 
     }

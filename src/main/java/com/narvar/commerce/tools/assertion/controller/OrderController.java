@@ -35,7 +35,7 @@ public class OrderController {
 
     @PostMapping(path = "/assert/order", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     public OrderAssertionResponse process(@RequestBody OrderAssertionRequest orderAssertionRequest) {
-        LOGGER.debug("Received request for retailer = {}", orderAssertionRequest.getAccountId());
+        LOGGER.debug("Received request for storeName = {}", orderAssertionRequest.getStoreName());
         return orderService.assertOrderData(orderAssertionRequest);
     }
 }

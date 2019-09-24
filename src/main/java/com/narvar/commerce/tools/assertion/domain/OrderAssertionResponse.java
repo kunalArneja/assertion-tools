@@ -20,4 +20,6 @@ public class OrderAssertionResponse {
     private String message;
     private List<String> validatedOrders;
     private List<String> invalidOrders;
+    private Integer validatedOrdersCount;
+    private Integer invalidOrdersCount;
 }

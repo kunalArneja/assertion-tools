@@ -46,7 +46,7 @@ public class OrderService {
                     DateUtils.getLocalDateTime(endTime));
             return orderApiService.validateOrders(shopifyOrderList, orderAssertionRequest.getAuthToken(), orderAssertionRequest.getAccountId(), orderAssertionRequest.getCheckAllOrders());
         } catch (Exception e) {
-            return new OrderAssertionResponse(false, e.getMessage(), null, null);
+            return new OrderAssertionResponse(false, e.getMessage(), null, null, null, null);
         }
     }
 }
