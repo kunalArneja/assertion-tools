@@ -52,7 +52,7 @@ public class ShopifyOrderService {
     public List<ShopifyOrder> getOrders(String storeName, String accessToken, LocalDateTime startDate, LocalDateTime endDate) throws Exception {
         ShopifyOrder firstOrder = getFirstOrder(storeName, accessToken, startDate, endDate);
         ShopifyOrder lastOrder = getLastOrder(storeName, accessToken, startDate, endDate);
-        Long sinceId = firstOrder.getId();
+        Long sinceId = firstOrder.getId() - 1L;
         Long endId = lastOrder.getId();
         Long currentStartIndex = sinceId;
         List<ShopifyOrder> shopifyOrderList = new ArrayList<>();

@@ -26,9 +26,8 @@ public class ProductTableReadService {
         ProductAssertionResponse productAssertionResponse = new ProductAssertionResponse();
         productAssertionResponse.setMessage("SUCCESS");
         productAssertionResponse.setSuccess(true);
-        String user = "kunal.arneja";
+        String user = "username";
         String bastionHost = "bastion-qa01.narvar.qa";
-        Boolean finish = false;
         Integer size = shopifyProductList.size();
         Integer currentIndex = 0;
         List<Long> validProductIds = new ArrayList<>();

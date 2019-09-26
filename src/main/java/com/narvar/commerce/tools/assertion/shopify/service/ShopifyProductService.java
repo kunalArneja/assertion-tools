@@ -52,7 +52,7 @@ public class ShopifyProductService {
     public List<ShopifyProduct> getProducts(String storeName, String accessToken, LocalDateTime startDate, LocalDateTime endDate) throws Exception {
         ShopifyProduct firstProduct = getFirstProduct(storeName, accessToken, startDate, endDate);
         ShopifyProduct lastProduct = getLastProduct(storeName, accessToken, startDate, endDate);
-        Long sinceId = firstProduct.getId();
+        Long sinceId = firstProduct.getId() - 1L;
         Long endId = lastProduct.getId();
         Long currentStartIndex = sinceId;
         List<ShopifyProduct> shopifyProductList = new ArrayList<>();
