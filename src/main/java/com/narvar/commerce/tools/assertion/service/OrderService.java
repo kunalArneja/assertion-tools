@@ -27,7 +27,7 @@ public class OrderService {
         this.orderApiService = orderApiService;
     }
 
-    public OrderAssertionResponse assertOrderData(OrderAssertionRequest orderAssertionRequest) {
+    public OrderAssertionResponse assertShopifyOrderData(OrderAssertionRequest orderAssertionRequest) {
         Date endTime = new Date();
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(endTime);
@@ -44,7 +44,20 @@ public class OrderService {
             List<ShopifyOrder> shopifyOrderList = shopifyOrderService.getOrders(orderAssertionRequest.getStoreName(),
                     orderAssertionRequest.getAccessToken(), DateUtils.getLocalDateTime(startTime),
                     DateUtils.getLocalDateTime(endTime));
-            return orderApiService.validateOrders(shopifyOrderList, orderAssertionRequest.getAuthToken(), orderAssertionRequest.getAccountId(), orderAssertionRequest.getCheckAllOrders());
+            return orderApiService.validateShopifyOrders(shopifyOrderList, orderAssertionRequest.getAuthToken(), orderAssertionRequest.getAccountId(), orderAssertionRequest.getCheckAllOrders());
+        } catch (Exception e) {
+            return new OrderAssertionResponse(false, e.getMessage(), null, null, null, null);
+        }
+    }
+
+    public OrderAssertionResponse assertOrderData(OrderAssertionRequest orderAssertionRequest) {
+
+        try {
+            return orderApiService.validateOrders(orderAssertionRequest.getStartId(),
+                    orderAssertionRequest.getEndId(),
+                    orderAssertionRequest.getAuthToken(),
+                    orderAssertionRequest.getAccountId(),
+                    orderAssertionRequest.getCheckAllOrders());
         } catch (Exception e) {
             return new OrderAssertionResponse(false, e.getMessage(), null, null, null, null);
         }

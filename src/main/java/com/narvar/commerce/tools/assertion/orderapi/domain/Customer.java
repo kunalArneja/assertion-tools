@@ -49,7 +49,7 @@ public class Customer {
     @JsonProperty("last_name")
     public String lastName;
     @JsonProperty("phone")
-    public Long phone;
+    public String phone;
     @JsonProperty("customer_type")
     public String customerType;
     @JsonIgnore

@@ -24,13 +24,11 @@ public class OrderAssertionRequest {
     @NotBlank
     private String accountId;
 
-    @NotBlank
     private String storeName;
 
     @NotBlank
     private String authToken;
 
-    @NotBlank
     private String accessToken;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssZZZ")
@@ -43,4 +41,8 @@ public class OrderAssertionRequest {
 
     @NotBlank
     private Boolean checkAllOrders;
+
+    private String startId;
+
+    private String endId;
 }

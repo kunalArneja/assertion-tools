@@ -33,8 +33,14 @@ public class OrderController {
         this.orderService = orderService;
     }
 
+    @PostMapping(path = "/assert/shopify/order", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    public OrderAssertionResponse processShopifyOrders(@RequestBody OrderAssertionRequest orderAssertionRequest) {
+        LOGGER.debug("Received request for storeName = {}", orderAssertionRequest.getStoreName());
+        return orderService.assertShopifyOrderData(orderAssertionRequest);
+    }
+
     @PostMapping(path = "/assert/order", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
-    public OrderAssertionResponse process(@RequestBody OrderAssertionRequest orderAssertionRequest) {
+    public OrderAssertionResponse processOrders(@RequestBody OrderAssertionRequest orderAssertionRequest) {
         LOGGER.debug("Received request for storeName = {}", orderAssertionRequest.getStoreName());
         return orderService.assertOrderData(orderAssertionRequest);
     }
