@@ -2,6 +2,8 @@ package com.narvar.commerce.tools.assertion.service;
 
 import com.narvar.commerce.tools.assertion.domain.OrderAssertionRequest;
 import com.narvar.commerce.tools.assertion.domain.OrderAssertionResponse;
+import com.narvar.commerce.tools.assertion.domain.OrderCreationRequest;
+import com.narvar.commerce.tools.assertion.magento.MagentoApiService;
 import com.narvar.commerce.tools.assertion.orderapi.OrderApiService;
 import com.narvar.commerce.tools.assertion.shopify.domain.ShopifyOrder;
 import com.narvar.commerce.tools.assertion.shopify.service.ShopifyOrderService;
@@ -19,12 +21,15 @@ public class OrderService {
 
     private ShopifyOrderService shopifyOrderService;
 
+    private MagentoApiService magentoApiService;
+
     private OrderApiService orderApiService;
 
     @Autowired
-    public OrderService(ShopifyOrderService shopifyOrderService, OrderApiService orderApiService) {
+    public OrderService(ShopifyOrderService shopifyOrderService, OrderApiService orderApiService, MagentoApiService magentoApiService) {
         this.shopifyOrderService = shopifyOrderService;
         this.orderApiService = orderApiService;
+        this.magentoApiService = magentoApiService;
     }
 
     public OrderAssertionResponse assertShopifyOrderData(OrderAssertionRequest orderAssertionRequest) {
@@ -60,6 +65,16 @@ public class OrderService {
                     orderAssertionRequest.getCheckAllOrders());
         } catch (Exception e) {
             return new OrderAssertionResponse(false, e.getMessage(), null, null, null, null);
+        }
+    }
+
+    public List<String> createOrders(OrderCreationRequest orderCreationRequest) {
+
+        try {
+            return magentoApiService.createOrders(orderCreationRequest.getUrl(),
+                    orderCreationRequest.getToken(), orderCreationRequest.getPayload(), orderCreationRequest.getNumberOfOrders());
+        } catch (Exception e) {
+            return null;
         }
     }
 }

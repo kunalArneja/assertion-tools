@@ -132,7 +132,7 @@ public class OrderApiService {
     }
 
     private Boolean validateWithOrderApi(String retailerId, String authToken, String orderNumber) throws Exception {
-        HttpGet request = new HttpGet("https://ws-qa02.narvar.qa/api/v1/orders/" + orderNumber);
+        HttpGet request = new HttpGet("https://ws-qa01.narvar.qa/api/v1/orders/" + orderNumber);
         String auth = retailerId + ":" + authToken;
         byte[] encodedAuth = Base64.encodeBase64(
                 auth.getBytes(StandardCharsets.ISO_8859_1));

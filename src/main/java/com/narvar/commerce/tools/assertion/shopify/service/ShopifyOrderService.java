@@ -12,7 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.narvar.commerce.tools.assertion.shopify.constants.ShopifyEndpoints;
-import com.narvar.commerce.tools.assertion.shopify.constants.ShopifyHeaders;
+import com.narvar.commerce.tools.assertion.shopify.constants.Headers;
 import com.narvar.commerce.tools.assertion.shopify.constants.ShopifyRequestConstants;
 import com.narvar.commerce.tools.assertion.shopify.domain.ShopifyOrder;
 import com.narvar.commerce.tools.assertion.shopify.domain.ShopifyOrders;
@@ -69,7 +69,7 @@ public class ShopifyOrderService {
                     .build();
             HttpGet request = new HttpGet("https://" + storeName + uri);
             request.addHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
-            request.addHeader(ShopifyHeaders.ACCESS_TOKEN, accessToken);
+            request.addHeader(Headers.ACCESS_TOKEN, accessToken);
             HttpResponse response = httpClient.execute(request);
             if (response.getStatusLine().getStatusCode() != 200) {
                 throw new RuntimeException("Failed with HTTP error code : " + response.getStatusLine().getStatusCode());
@@ -99,7 +99,7 @@ public class ShopifyOrderService {
                 .build();
         HttpGet request = new HttpGet("https://" + storeName + uri);
         request.addHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
-        request.addHeader(ShopifyHeaders.ACCESS_TOKEN, accessToken);
+        request.addHeader(Headers.ACCESS_TOKEN, accessToken);
         HttpResponse response = httpClient.execute(request);
         if (response.getStatusLine().getStatusCode() != 200) {
             throw new RuntimeException("Failed with HTTP error code : " + response.getStatusLine().getStatusCode());
@@ -123,7 +123,7 @@ public class ShopifyOrderService {
                 .build();
         HttpGet request = new HttpGet("https://" + storeName + uri);
         request.addHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
-        request.addHeader(ShopifyHeaders.ACCESS_TOKEN, accessToken);
+        request.addHeader(Headers.ACCESS_TOKEN, accessToken);
         HttpResponse response = httpClient.execute(request);
         if (response.getStatusLine().getStatusCode() != 200) {
             throw new RuntimeException("Failed with HTTP error code : " + response.getStatusLine().getStatusCode());
